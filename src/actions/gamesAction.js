@@ -4,6 +4,8 @@ import {
   upcomingGamesURL
 } from "../api";
 
+//Redux toolkit: Slice (reducers and actions)
+//Action -> Reducer -> Views
 //Action Creator
 
 export const loadGames = () => async (dispatch) => {
