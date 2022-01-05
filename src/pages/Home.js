@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import GameDetail from "../components/GameDetail";
 import { useLocation } from "react-router-dom";
+import { fadeIn } from "../animations";
 
 const Home = () => {
   //get the current location
@@ -22,9 +23,10 @@ const Home = () => {
   }, [dispatch]);
   //Get that data back
   const games = useSelector((state) => state.games);
-  const { popular, newGames, upcoming ,searched } = games;
+  const { popular, newGames, upcoming, searched } = games;
   return (
-    <GameList>
+    // Framer motion variants
+    <GameList variants={fadeIn} initial="hidden" animate="show">
       {/* Neu co pathId cua game thì in game detail */}
       {pathId && <GameDetail />}
       {searched.length ? (
@@ -42,8 +44,10 @@ const Home = () => {
             ))}
           </Games>
         </div>
-      ) : ''}
-      
+      ) : (
+        ""
+      )}
+
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
