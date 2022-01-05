@@ -22,11 +22,28 @@ const Home = () => {
   }, [dispatch]);
   //Get that data back
   const games = useSelector((state) => state.games);
-  const { popular, newGames, upcoming } = games;
+  const { popular, newGames, upcoming ,searched } = games;
   return (
     <GameList>
       {/* Neu co pathId cua game thì in game detail */}
       {pathId && <GameDetail />}
+      {searched.length ? (
+        <div className="searched">
+          <h2>Searched Games</h2>
+          <Games>
+            {searched.map((game) => (
+              <Game
+                name={game.name}
+                released={game.released}
+                id={game.id}
+                image={game.background_image}
+                key={game.id}
+              />
+            ))}
+          </Games>
+        </div>
+      ) : ''}
+      
       <h2>Upcoming Games</h2>
       <Games>
         {upcoming.map((game) => (
